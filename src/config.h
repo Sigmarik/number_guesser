@@ -11,6 +11,8 @@
 
 #pragma once
 
+#include <stdlib.h>
+
 static const char PROGRAM_VERSION[] = "v0.1";
 static const char PROGRAM_BUG_ADDRESS[] = "<kudriashov.it@phystech.edu>";
 
@@ -35,6 +37,9 @@ static const unsigned LOG_THRESHOLD = 0;
 
 static const double CMP_EPS = 1e-5;
 
-static const unsigned CONN_PORT = 111213;
+static const unsigned CONN_PORT = 12131;
+
+static const size_t MAX_CLIENT_COUNT = 1024;
+static const size_t MAX_PACKAGE_SIZE = 128;
 
 static const char INPUT_PREFIX[] = ">>> ";

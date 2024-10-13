@@ -19,17 +19,17 @@ static in_addr_t get_address() {
     do {
         std::string server_addr_string;
 
-        std::cout << "Server address: " << std::endl;
+        std::cout << "Server address:\n" << INPUT_PREFIX;
         std::cin >> server_addr_string;
-        std::cout << "Address:" << server_addr_string.c_str() << "."
-                  << std::endl;
 
         address = inet_addr(server_addr_string.c_str());
         if (address == (in_addr_t)(-1)) {
             address = 0;
-            std::cout << "Server address could not be resolved." << std::endl;
+            std::cout << "Cannot resolve IPv4 address from the input provided. "
+                         "Please use standard IPv4 notation (P1.P2.P3.P4)."
+                      << std::endl;
         } else if (address == 0) {
-            std::cout << "Server address cannot be null." << std::endl;
+            std::cout << "Server address cannot be 0.0.0.0." << std::endl;
         }
     } while (address == 0);
 
@@ -41,11 +41,12 @@ int as_client() {
 
     sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(8080);
+    server_address.sin_port = htons(CONN_PORT);
     server_address.sin_addr.s_addr = get_address();
 
     connect(sock, (sockaddr*)&server_address, sizeof(server_address));
 
+    // TODO: Implement...
     while (1);
 
     close(sock);
