@@ -25,26 +25,16 @@ enum OptCodeKey {
 
 static const argp_option PARSER_OPTIONS[] = {
     {"owl", OPT_OWL, NULL, 0, "Lets the owls out"},
-    {"output", 'o', "OUTPUT_FILE", 0, "Output file path"},
+    {"server", 's', NULL, 0, "Runs the program in server mode"},
     {}  // <-- NULL-terminator
 };
 
 struct Options {
-    Options();
-    Options(const Options& options);
-    ~Options();
-
-    Options& operator=(const Options& options);
-
-    const char* get_output_name();
-    const char* get_input_name();
-
-    void set_output_name(const char* new_name);
-    void set_input_name(const char* new_name);
+    void enable_server() { server_ = true; }
+    bool is_server() const { return server_; }
 
    private:
-    const char* output_name_;
-    const char* input_name_;
+    bool server_ = false;
 };
 
 /**

@@ -9,7 +9,9 @@
  *
  */
 
+#include <netinet/in.h>
 #include <stdlib.h>
+#include <sys/socket.h>
 #include <unistd.h>
 
 #include "io/main_io.h"
@@ -18,7 +20,9 @@
 
 #define MAIN
 
+#include "client.h"
 #include "config.h"
+#include "server.h"
 #include "utils/main_utils.h"
 
 int main(const int argc, char** argv) {
@@ -35,7 +39,11 @@ int main(const int argc, char** argv) {
         return EXIT_FAILURE;
     }
 
-    printf("Hello, world!\n");
+    if (options.is_server()) {
+        as_server();
+    } else {
+        as_client();
+    }
 
     return errno == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -34,3 +34,7 @@ template description before publishing your work.
 static const unsigned LOG_THRESHOLD = 0;
 
 static const double CMP_EPS = 1e-5;
+
+static const unsigned CONN_PORT = 111213;
+
+static const char INPUT_PREFIX[] = ">>> ";
